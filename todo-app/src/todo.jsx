@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+
 export default function ToDo() {
-  let [todo, setTodo] = useState([{ task: "sample task", id: uuidv4(), complete: false }]);
+  let [todo, setTodo] = useState([{ task: "sample task", id: uuidv4(), complete: false, priority: 0 }]);
   let [newtodo, setnewTodo] = useState("");
+  let [priority, setpriority] = useState(0);
 
   let updatetodo = () => {
-    setTodo([...todo, { task: newtodo, id: uuidv4(), complete: false }]);
+    setTodo([...todo, { task: newtodo, id: uuidv4(), complete: false, priority }]);
     setnewTodo("");
   };
 
   let updatetodovalue = (event) => {
     setnewTodo(event.target.value);
+  };
+
+  let incpriority = () => {
+    setpriority(priority + 1);
   };
 
   let deleteTodo = (id) => {
@@ -25,6 +31,17 @@ export default function ToDo() {
     );
   };
 
+  let changepriority = (index) => {
+    if (index > 0 && index < todo.length) {
+      let prev = todo[index - 1];
+      let curr = todo[index];
+      let updatedTodo = [...todo];
+      updatedTodo[index - 1] = curr;
+      updatedTodo[index] = prev;
+      setTodo(updatedTodo);
+    }
+  };
+
   return (
     <div>
       <h2>to-do</h2>
@@ -35,12 +52,14 @@ export default function ToDo() {
         onChange={updatetodovalue}
       />
       &nbsp; &nbsp; &nbsp;
-      <button type="submit" onClick={updatetodo}>
+      <button type="submit" onClick={() => { updatetodo(); incpriority(); }}>
         add+
       </button>
       <ul>
-        {todo.map((todo) => (
+        {todo.map((todo, index) => (
           <li key={todo.id}>
+            <button onClick={() => changepriority(index)}>&#8593;</button>
+            &nbsp; &nbsp; &nbsp;
             <input
               type="checkbox"
               checked={todo.complete}
@@ -51,7 +70,7 @@ export default function ToDo() {
               {todo.task}
             </span>
             &nbsp; &nbsp; &nbsp;
-            <button onClick={() => deleteTodo(todo.id)} style={{color:'red'}}>delete</button>
+            <button onClick={() => deleteTodo(todo.id)} style={{ color: 'red' }}>delete</button>
           </li>
         ))}
       </ul>
