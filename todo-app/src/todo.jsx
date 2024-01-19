@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ToDo() {
@@ -11,6 +11,19 @@ export default function ToDo() {
   let [now, setnow] = useState(null);
   let [time, setTime] = useState(null);
   let intervalref = useRef(null);
+
+  useEffect(() => {
+    const storedTodo = localStorage.getItem("todo");
+    if (storedTodo) {
+      setTodo(JSON.parse(storedTodo));
+    }
+  }, []);
+
+  
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  }, [todo]);
+
 
   function handlestart(id) {
     setTime(id);
