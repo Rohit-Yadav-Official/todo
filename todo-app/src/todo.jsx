@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ToDo() {
@@ -7,6 +7,37 @@ export default function ToDo() {
   let [priority, setpriority] = useState(0);
   let [edittask, setedittask] = useState(null);
   let [writingEditTask, setWritingEditTask] = useState("");
+  let [startTime, setStarttime] = useState(null);
+  let [now, setnow] = useState(null);
+  let [time, setTime] = useState(null);
+  let intervalref = useRef(null);
+
+  function handlestart(id) {
+    setTime(id);
+    setStarttime(Date.now());
+    setnow(Date.now());
+    intervalref.current = setInterval(() => {
+      setnow(Date.now());
+    }, 10);
+  }
+
+  function restartTime() {
+    setStarttime(Date.now());
+    setnow(Date.now());
+    clearInterval(intervalref.current);
+    intervalref.current = setInterval(() => {
+      setnow(Date.now());
+    }, 10);
+  }
+
+  function stop() {
+    clearInterval(intervalref.current);
+  }
+
+  let secondsPassed = 0;
+  if (startTime != null && now != null) {
+    secondsPassed = (now - startTime) / 1000;
+  }
 
   let updatetodo = () => {
     setTodo([...todo, { task: newtodo, id: uuidv4(), complete: false, priority }]);
@@ -84,7 +115,16 @@ export default function ToDo() {
               type="checkbox"
               checked={t.complete}
               onChange={() => completetask(t.id)}
-            />
+            /> &nbsp; &nbsp; &nbsp;
+            {time === t.id ? (<>
+              <span>{secondsPassed.toFixed(3)}</span>
+              <button onClick={restartTime}>restart</button>
+              <button onClick={stop}>stop</button>
+            </>) : (
+                <>
+                  <button onClick={() => { handlestart(t.id) }}>start</button>
+                </>
+              )}
             &nbsp; &nbsp; &nbsp;
 
             {edittask === t.id ? (
@@ -98,13 +138,14 @@ export default function ToDo() {
                 <button onClick={stopediting}>cancel</button>
               </>
             ) : (
-              <>
-                <span style={{ color: t.complete ? 'green' : 'black' }}>
-                  {t.task}
-                </span>
-                <button onClick={() => startedit(t.id, t.task)}>edit</button>
-              </>
-            )}
+                <>
+                  <span style={{ color: t.complete ? 'green' : 'black' }}>
+                    {t.task}
+                  </span>
+                  &nbsp; &nbsp;
+                  <button onClick={() => startedit(t.id, t.task)}>edit</button>
+                </>
+              )}
             &nbsp; &nbsp; &nbsp;
             <button onClick={() => deleteTodo(t.id)} style={{ color: 'red' }}>delete</button>
             <br /><br />
