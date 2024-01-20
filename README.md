@@ -22,31 +22,7 @@ A simple ToDo application built with React that allows users to manage tasks, se
    npm install
 
 
-Certainly! The README file above is written in Markdown. Here's the raw Markdown code:
 
-markdown
-Copy code
-# ToDo App
-
-A simple ToDo application built with React that allows users to manage tasks, set priorities, and track time spent on tasks.
-
-## Features
-
-- Add new tasks with priorities
-- Start, stop, and restart a timer for each task
-- Mark tasks as complete
-- Edit task names
-- Change task priorities
-- Delete tasks
-- Clear all tasks
-
-## Getting Started
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/todo-app.git
-Install dependencies:
 
 bash
 Copy code
