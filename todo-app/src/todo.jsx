@@ -119,6 +119,12 @@ export default function ToDo() {
       <button type="submit" onClick={() => { updatetodo(); incpriority(); }}>
         add+
       </button>
+      <br />
+      <br />
+      <span>{todo.length} task is remaining </span> 
+      &nbsp; &nbsp;
+     <button  onClick={()=>{ setTodo([])}}>clear all</button>
+      <br />
       <ul>
         {todo.map((t, index) => (
           <li key={t.id}>
