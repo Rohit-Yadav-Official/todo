@@ -1,6 +1,75 @@
-# TO DO APP using Vite + ReactJs
-Our React.js-based To-Do app is a versatile and intuitive task management tool that empowers users to efficiently manage their daily tasks, prioritize activities, and boost productivity. With its sleek and responsive user interface, this app offers a seamless and delightful user experience.
+# ToDo App
 
-Our React.js-based To-Do app is the perfect companion for individuals and teams seeking to optimize their task management and productivity. Whether you're juggling work, school, personal life, or all of the above, our app helps you stay organized, focused, and in control of your tasks.
+A simple ToDo application built with React that allows users to manage tasks, set priorities, and track time spent on tasks.
 
-Start maximizing your productivity today with our React.js To-Do app and experience a new level of task management efficiency.
+## Features
+
+- Add new tasks with priorities
+- Start, stop, and restart a timer for each task
+- Mark tasks as complete
+- Edit task names
+- Change task priorities
+- Delete tasks
+- Clear all tasks
+
+## Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
+   cd todo-app
+   npm install
+
+
+Certainly! The README file above is written in Markdown. Here's the raw Markdown code:
+
+markdown
+Copy code
+# ToDo App
+
+A simple ToDo application built with React that allows users to manage tasks, set priorities, and track time spent on tasks.
+
+## Features
+
+- Add new tasks with priorities
+- Start, stop, and restart a timer for each task
+- Mark tasks as complete
+- Edit task names
+- Change task priorities
+- Delete tasks
+- Clear all tasks
+
+## Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/todo-app.git
+Install dependencies:
+
+bash
+Copy code
+cd todo-app
+npm install
+Run the app:
+
+bash
+Copy code
+npm start
+Open http://localhost:3000 in your browser to view the app.
+
+# Usage
+Enter a task in the input field and click the "Add" button to add it to the ToDo list.
+
+Use the "↑" button to change the priority of a task.
+
+Click the checkbox to mark a task as complete.
+
+Start a timer for a task by clicking the "Start" button. Stop or restart the timer as needed.
+
+Edit task names by clicking the "Edit" button, make changes, and click "Save" to save changes or "Cancel" to discard changes.
+
+Delete tasks using the "Delete" button.
+
+Clear all tasks by clicking the "Clear All" button.
